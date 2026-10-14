@@ -1,0 +1,15 @@
+[Unit]
+Description=Monitor Ignition Status
+ConditionPathExists=/opt/user-services/power-monitor.py
+After=local-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -u /opt/user-services/power-monitor.py
+Restart=on-failure
+RestartSec=5
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

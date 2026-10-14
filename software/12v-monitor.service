@@ -1,0 +1,15 @@
+[Unit]
+Description=Monitor 12v inputs
+ConditionPathExists=/opt/user-services/12v-monitor.py
+After=local-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -u /opt/user-services/12v-monitor.py
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=60
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=Enable Rotary-Encoder Control
+ConditionPathExists=/opt/user-services/rotary-encoder.py
+After=local-fs.target
+
+[Service]
+Type=simple
+Environment="DISPLAY=:0" "XAUTHORITY=/home/pi/.Xauthority"
+ExecStart=/usr/bin/python3 -u /opt/user-services/rotary-encoder.py
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=60
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target
